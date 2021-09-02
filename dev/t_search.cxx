@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 			if(k != t.end()){	// found sum
 				size_t offset = std::distance(t.begin(),k);
 				printf("Found %u at offset %zu\n", sum,offset);
+#if(0)
 				// find the equal ranges in left and right
 				size_t leftr = 0;
 				It lit = i+1;
@@ -65,15 +66,17 @@ int main(int argc, char **argv)
 					++rightr;
 					++rightit;
 				}
+#endif
+				++c[offset];
 				// update the corresponding count
-				c[offset] += (leftr * rightr);
-				j = right.end();
+				//c[offset] += (leftr * rightr);
+				//j = right.end();
 				//std::advance(i, leftr);
 			}
 		}
 	}
 	// output sums and counts
-	for(auto x = 0; x < t.size(); ++x) printf("t: %u  c: %u\n", t[0], c[0]);
+	//for(auto x = 0; x < t.size(); ++x) printf("t: %u  c: %u\n", t[x], c[x]);
 	
 	
 	// Results
