@@ -52,26 +52,20 @@ int main(int argc, char **argv)
 			if(k != t.end()){	// found sum
 				size_t offset = std::distance(t.begin(),k);
 				printf("Found %u at offset %zu\n", sum,offset);
-#if(0)
-				// find the equal ranges in left and right
-				size_t leftr = 0;
-				It lit = i+1;
-				while(*lit == *i){
-					++leftr;
-					++lit;
-				}
-				size_t rightr = 0;
-				It rightit = j+1;
-				while(*rightit == *j){
+
+				// find the equal ranges in right and left
+				size_t rightr = 1;
+				while(*(j+1) == *j){
+					std::next(j,1);
 					++rightr;
-					++rightit;
 				}
-#endif
-				++c[offset];
-				// update the corresponding count
-				//c[offset] += (leftr * rightr);
-				//j = right.end();
-				//std::advance(i, leftr);
+				
+				size_t leftr = 1;
+				while(*(i+1) == *i){
+					std::next(i,1);
+					++leftr;
+				}
+				c[offset] += (leftr * rightr);
 			}
 		}
 	}
