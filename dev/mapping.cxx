@@ -54,23 +54,27 @@ int main(int argc, char **argv)
 	tcount.insert(std::make_pair(30,0));
 	// ---------------------------------------
 	
-	unsigned count = 0;
+	UUmap::iterator f;
 	for(auto l = left.begin(); l < left.end(); ++l){
 		for(auto r = right.begin(); r < right.end(); ++r){
 			sum = l->first + r->first;
-			if(tcount.find(sum) != tcount.end()){
+			f = tcount.find(sum);
+			if(f != tcount.end()){
 				printf("Sum: %u found\n", sum);
-				if(sum==22){
-					count += l->second * r->second;
-				}
+
+					f->second+= l->second * r->second;
+
 			} else {
 				printf("Not found: %u\n", sum);
 			}
 		}
 	}
 	
-	printf("Count: %u\n", count);
-	
+	// range based for loop
+	for(std::pair<unsigned,unsigned> element : tcount){
+		printf("%u : %u\n", element.first, element.second);
+	}
+		
 	return 0;
 }
 
