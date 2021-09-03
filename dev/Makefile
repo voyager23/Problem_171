@@ -1,5 +1,8 @@
 #Makefile for dev folder
 
+mapping: mapping.cxx
+	g++ -Wall -g -std=c++11 -o map mapping.cxx
+	
 t_search: t_search.cxx
 	g++ -Wall -g -std=c++11 -o ts t_search.cxx
 	
