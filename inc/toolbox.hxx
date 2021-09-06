@@ -30,11 +30,13 @@
 	#include <map>
 	#include <cmath>
 	#include <iterator>
+	#include <set>
 
 	#define NL std::cout<<std::endl
 	typedef uint64_t ul;
 	typedef unsigned U;
 	typedef std::map<U,U> MapUU;
 	void SieveOfEratosthenes(std::vector<ul> &primes, ul n);
+	void make_map_pair(MapUU &left, MapUU &right, int digits);
 	void make_map(MapUU &left);
 #endif

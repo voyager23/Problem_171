@@ -45,9 +45,9 @@ int main(int argc, char **argv)
 		}
 	}
 
-#if(0)
+#if(1)
 	// range based for loop
-	for(MapUU element : sum_count){
+	for(std::pair<U,U> element : sum_count){
 		printf("%u : %u\n", element.first, element.second);
 	}
 #endif
