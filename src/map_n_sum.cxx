@@ -1,5 +1,5 @@
 /*
- * toolbox.hxx
+ * map_n_sum.cxx
  * 
  * Copyright 2021 Michael Tate <mike@Michaels-MBP>
  * 
@@ -20,21 +20,29 @@
  * 
  * 
  */
-#ifndef __TOOLBOX_HXX__
-#define __TOOLBOX_HXX__
 
-	#include <iostream>
-	#include <numeric>
-	#include <array>
-	#include <vector>
-	#include <map>
-	#include <cmath>
-	#include <iterator>
 
-	#define NL std::cout<<std::endl
-	typedef uint64_t ul;
-	typedef unsigned U;
-	typedef std::map<U,U> MapUU;
-	void SieveOfEratosthenes(std::vector<ul> &primes, ul n);
-	void make_map(MapUU &left);
-#endif
+#include <iostream>
+
+#include "../inc/toolbox.hxx"
+
+int main(int argc, char **argv)
+{
+	MapUU left;
+	make_map(left); printf("left.size() = %lu\n", left.size());
+	// using 4 iterators MSI = a, LSI = d
+	U sum = 0;
+	for(auto a = left.begin(); a != std::next(left.begin(),1); ++a){
+		for(auto b = left.begin(); b != std::next(left.begin(),1); ++b){
+			for(auto c = left.begin(); c != std::next(left.begin(),1); ++c){
+				for(auto d = left.begin(); d != std::next(left.begin(),1000); ++d){
+					printf("%u : %u\n", d->first, d->second);
+					sum += d->second;
+				} //d
+			} //c
+		} //b
+	} //a
+	printf("Sum = %u\n", sum);
+	return 0;
+}
+

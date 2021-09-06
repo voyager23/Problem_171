@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 	printf("Final sum: %u\n", final_sum - 1);
 	
 	MapUU mapl,mapr;
-	make_map_pair(mapl,mapr,4);
+	make_map_pair(mapl,mapr,3);
 	
 	return 0;
 }

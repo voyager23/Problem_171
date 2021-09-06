@@ -24,34 +24,24 @@
 #include "../inc/toolbox.hxx"
 
 //----------------------------------------------------------
-void make_map_pair(MapUU &left, MapUU &right, int digits){
-	// -----sanity check-----
-	left.clear();
-	right.clear();
-	if(digits > 19) return;
-	//-------------------------
-	
-	int nl = digits/2;
-	int nr = nl + digits % 2;	// length >= nl;
-	// construct the (longest) map right;
-	unsigned limit = std::pow(10, nr);
-	for(auto m = 1; m < limit; ++m){
-		// find sum of squares of digits of m
-		unsigned sum = 0;
-		unsigned copy = m;
-		while(copy){
-			sum += (copy % 10)*(copy % 10);
-			copy /= 10;
+void make_map(MapUU &left){
+	// Construct a map 0 <= n < 10^6 of n and corresponding sum
+	// std::map< n, sum_of_squares
+	const int limit = 1000000;
+	U d,sum;
+	std::pair<U,U> element;
+	for(U n = 0; n < limit; ++n){
+		sum = 0;
+		d = n;
+		while(d){
+			sum += std::pow((d%10),2);
+			d /=10;
 		}
-		// insert or update map
-		auto result = right.insert(std::make_pair(sum,1));
-		if((result.second)==false) result.first->second += 1;
+		element = {n, sum};
+		left.insert(element);
 	}
-	// insert a (subset) of elements from right to left
-	limit = std::pow(10,nl);
-	for(auto idx = 0; idx < limit; ++idx) 
-		left.insert(std::make_pair(idx, right[idx]));
 }
+
 
 //----------------------------------------------------------
 void SieveOfEratosthenes(std::vector<ul> &primes, ul n)
@@ -86,10 +76,10 @@ void SieveOfEratosthenes(std::vector<ul> &primes, ul n)
 //----------------------------------------------------------
 #if(0)
 int main(void) {
-    std::vector<ul> primes;
-    const ul n = 9999999;
-    SieveOfEratosthenes(primes,n);
-    for(auto pf = primes.begin(); pf != primes.end(); ++pf) printf("%lu  ", *pf);
+	MapUU left;
+	make_map(left);
+	printf("MapUU.size = %lu\n", left.size());
+	for(auto it = left.begin(); it != left.end(); ++it) printf("%u : %u\n", it->first, it->second);
     NL;
 }
 #endif

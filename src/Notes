@@ -1,1 +1,29 @@
 git@github.com:voyager23/Problem_171.git
+
+	// -----sanity check-----
+	left.clear();
+	right.clear();
+	if(digits > 19) return;
+	//-------------------------
+	
+	int nl = digits/2;
+	int nr = nl + digits % 2;	// length >= nl;
+	// construct the (longest) map right;
+	unsigned limit = std::pow(10, nr);
+	for(auto m = 1; m < limit; ++m){
+		// find sum of squares of digits of m
+		unsigned sum = 0;
+		unsigned copy = m;
+		while(copy){
+			sum += (copy % 10)*(copy % 10);
+			copy /= 10;
+		}
+		// insert or update map
+		auto result = right.insert(std::make_pair(sum,1));
+		if((result.second)==false) result.first->second += 1;
+	}
+	// insert a (subset) of elements from right to left
+	limit = std::pow(10,nl);
+	for(auto idx = 0; idx < limit; ++idx) 
+		left.insert(std::make_pair(idx, right[idx]));
+}
