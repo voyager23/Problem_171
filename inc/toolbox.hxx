@@ -25,12 +25,16 @@
 #include <numeric>
 #include <array>
 #include <vector>
+#include <map>
+#include <cmath>
 
 #ifndef __TOOLBOX_HXX__
 #define __TOOLBOX_HXX__
 
 	#define NL std::cout<<std::endl
 	typedef uint64_t ul;
+	typedef std::map<unsigned,unsigned> MapUU;
 	void SieveOfEratosthenes(std::vector<ul> &primes, ul n);
+	void make_map_pair(std::map<unsigned,unsigned> &lmap,std::map<unsigned,unsigned> &rmap, int digits);
 	
 #endif

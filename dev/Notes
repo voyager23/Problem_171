@@ -1,0 +1,15 @@
+#if(0)
+				// find the equal ranges in left and right
+				size_t leftr = 0;
+				It lit = i+1;
+				while(*lit == *i){
+					++leftr;
+					++lit;
+				}
+				size_t rightr = 0;
+				It rightit = j+1;
+				while(*rightit == *j){
+					++rightr;
+					++rightit;
+				}
+#endif
