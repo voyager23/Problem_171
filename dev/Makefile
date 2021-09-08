@@ -1,17 +1,15 @@
-#Makefile for dev folder
+#Makefile for src folder
 
-mapping: mapping.cxx
-	g++ -Wall -g -std=c++11 -o map mapping.cxx
+
+arrays : arrays.cxx toolbox.cxx
+	g++ -Wall -g -std=c++11 -o arrays arrays.cxx toolbox.cxx
 	
-t_search: t_search.cxx
-	g++ -Wall -g -std=c++11 -o ts t_search.cxx
+mapnsum : map_n_sum.cxx toolbox.cxx
+	g++ -Wall -g -std=c++11 -o mapnsum map_n_sum.cxx toolbox.cxx
 	
-c_perm: c_perm.cxx
-	g++ -Wall -g -std=c++11 -o cperm c_perm.cxx
+cmpsrch : cmp_search.cxx toolbox.cxx
+	g++ -Wall -g -std=c++11 -o cmpsrch cmp_search.cxx toolbox.cxx
 	
-b_perm: b_perm.cxx
-	g++ -Wall -g -std=c++11 -o bperm b_perm.cxx
-	
-perm: perm.cxx
-	g++ -Wall -g -std=c++11 -o perm perm.cxx
+tb : toolbox.cxx
+	g++ -Wall -g -std=c++11 -o tb toolbox.cxx
 	

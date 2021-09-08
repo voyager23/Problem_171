@@ -33,6 +33,7 @@
 	#include <set>
 
 	#define NL std::cout<<std::endl
+	typedef unsigned long long ULL;
 	typedef uint64_t ul;
 	typedef unsigned U;
 	typedef std::map<U,U> MapUU;

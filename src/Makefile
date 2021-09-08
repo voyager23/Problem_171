@@ -1,6 +1,9 @@
 #Makefile for src folder
 
 
+arrays : arrays.cxx toolbox.cxx
+	g++ -Wall -g -std=c++11 -o arrays arrays.cxx toolbox.cxx
+	
 mapnsum : map_n_sum.cxx toolbox.cxx
 	g++ -Wall -g -std=c++11 -o mapnsum map_n_sum.cxx toolbox.cxx
 	
