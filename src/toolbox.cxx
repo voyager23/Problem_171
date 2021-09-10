@@ -23,6 +23,27 @@
 
 #include "../inc/toolbox.hxx"
 
+unsigned brute_force_d_digits(int d){
+	if(d>88) return 0; // Sanity checks
+	const unsigned modulus = 1000000000U;
+	const unsigned limit = (unsigned)std::pow(10,d);
+	const std::array<unsigned,10> sqrs = {0,1,4,9,16,25,36,49,64,81};
+	unsigned sum = 0;
+	for(unsigned n = 1; n < limit; ++n){
+		unsigned ss = 0;
+		unsigned m = n;
+		while(m){
+			ss += sqrs[m % 10];
+			m /= 10;
+		}
+		double_t t = std::trunc(std::sqrt(ss));
+		if((t * t) != ss) continue;
+		sum += n;
+		sum %= modulus;
+	}	
+	return sum;
+}
+
 void make_map_pair(MapUU &left, MapUU &right, int digits){
 	// -----sanity check-----
 	left.clear();
@@ -34,7 +55,7 @@ void make_map_pair(MapUU &left, MapUU &right, int digits){
 	int nr = nl + digits % 2;	// length >= nl;
 	// construct the (longest) map right;
 	unsigned limit = std::pow(10, nr);
-	for(auto m = 1; m < limit; ++m){
+	for(unsigned m = 1; m < limit; ++m){
 		// find sum of squares of digits of m
 		unsigned sum = 0;
 		unsigned copy = m;
@@ -48,7 +69,7 @@ void make_map_pair(MapUU &left, MapUU &right, int digits){
 	}
 	// insert a (subset) of elements from right to left
 	limit = std::pow(10,nl);
-	for(auto idx = 0; idx < limit; ++idx) 
+	for(unsigned idx = 0; idx < limit; ++idx) 
 		left.insert(std::make_pair(idx, right[idx]));
 }
 
@@ -105,11 +126,10 @@ void SieveOfEratosthenes(std::vector<ul> &primes, ul n)
 //----------------------------------------------------------
 #if(0)
 int main(void) {
-	MapUU left;
-	make_map(left);
-	printf("MapUU.size = %lu\n", left.size());
-	for(auto it = left.begin(); it != left.end(); ++it) printf("%u : %u\n", it->first, it->second);
-    NL;
+	for(unsigned n=1; n <= 10; ++n){
+		unsigned sumofn = brute_force_d_digits(n);
+		printf("For %u digits, sumofn = %u\n", n, sumofn);
+	}
 }
 #endif
 

@@ -1,3 +1,19 @@
+Brute force search mod 1000000000
+For 1 digits, sumofn = 45
+For 2 digits, sumofn = 726
+For 3 digits, sumofn = 28083
+For 4 digits, sumofn = 1719828
+For 5 digits, sumofn = 161887270
+For 6 digits, sumofn = 608872280
+For 7 digits, sumofn = 587599519
+For 8 digits, sumofn = 709355474
+For 9 digits, sumofn = 205478039
+For 10 digits, sumofn = 538607937
+
+real	2m38.943s
+user	2m38.931s
+sys	0m0.004s
+-------------------------------------
 git@github.com:voyager23/Problem_171.git
 
 	// -----sanity check-----

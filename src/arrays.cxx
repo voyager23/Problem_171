@@ -23,14 +23,16 @@
 
 #include "../inc/toolbox.hxx"
 
-ul mod = 10000000000;	// mod 10^10 => 9 digits
-const int Size = 100000;
+ul modulus = 10000000000;	// mod 10^10 => 9 digits
+const int nDigits = 5;
+const unsigned Size = (unsigned)std::pow(10,nDigits);
 
 int main(int argc, char **argv)
 {
 	std::array<ul, 10> lookup;
 	for(ul x = 0; x < 10; ++x) lookup[x] = x*x;
-	std::array<ul, 100000> A = {0};	// sum of squares of digits0 -> 99999
+	
+	std::array<ul, Size> A = {0};	// sum of squares of digits0 -> 99999
 	for(ul x = 0; x < Size; ++x){
 		if(A[x]) continue;	// prev set
 		std::vector<int> perms;
@@ -56,8 +58,17 @@ int main(int argc, char **argv)
 			A[i] = A[x];
 		}while(std::next_permutation(perms.begin(), perms.end()));
 	}
-	// debug print of all values in A
-	for(auto x = 0; x < Size; ++x) printf("A[%d] : %llu\n", x, A[x]);
+	
+	// Assume that the values in A are correct. n : sumofsquares of digits
+	unsigned sumofalln = 0;
+	for(unsigned i = 0; i < Size; ++i){
+		double_t t = std::trunc(std::sqrt(A[i]));
+		if((t * t) != A[i]) continue;
+		sumofalln += i;
+		sumofalln %= modulus;
+	}
+	printf("For %u digits somofalln  = %u\n", nDigits, sumofalln);
+	printf("Brute force for 6 digits = 161887270\n");	
 	return 0;
 }
 

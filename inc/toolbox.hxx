@@ -31,6 +31,7 @@
 	#include <cmath>
 	#include <iterator>
 	#include <set>
+	#include <algorithm>
 
 	#define NL std::cout<<std::endl
 	typedef unsigned long long ULL;
@@ -40,4 +41,5 @@
 	void SieveOfEratosthenes(std::vector<ul> &primes, ul n);
 	void make_map_pair(MapUU &left, MapUU &right, int digits);
 	void make_map(MapUU &left);
+	unsigned brute_force_d_digits(int d);
 #endif
